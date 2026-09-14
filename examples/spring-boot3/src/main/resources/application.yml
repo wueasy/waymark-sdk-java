@@ -1,0 +1,37 @@
+# Waymark Spring Boot 3 示例配置：仅需填写 waymark.* 前缀配置即完成自动装配。
+server:
+  port: 8081
+
+waymark:
+  # endpoint 支持多个地址（英文逗号分隔），默认使用第一个，网络层错误时自动故障转移。
+  endpoint: ${WAYMARK_ENDPOINT:http://127.0.0.1:9868}
+  username: ${WAYMARK_USERNAME:admin}
+  password: ${WAYMARK_PASSWORD:123456}
+
+  # 配置监听 + 热加载：data-ids 非空时自动加载配置并订阅变更，
+  # 多个配置文件名使用英文逗号分隔（如 demo-app.yaml,demo.yaml），
+  # 配置内容会写入 Environment 并重新绑定 @ConfigurationProperties，无需重启。
+  config:
+    enabled: true
+    namespace: ${WAYMARK_NAMESPACE:public}
+    group-name: DEFAULT_GROUP
+    data-ids: demo-app.yaml
+
+  # 服务发现：enabled=true 时自动缓存在线实例；
+  # service-name 非空时自动注册自身实例并保持心跳。
+  registry:
+    enabled: true
+    namespace: ${WAYMARK_NAMESPACE:public}
+    group-name: DEFAULT_GROUP
+    service-name: waymark-demo-boot3-service
+    ip: 127.0.0.1
+    port: 8081
+    weight: 1.0
+    metadata:
+      version: 1.0.0
+      demo: spring-boot3
+
+# 打开 SDK 调试日志，便于观察自动配置、热加载与服务发现过程。
+logging:
+  level:
+    com.wueasy.waymark: DEBUG

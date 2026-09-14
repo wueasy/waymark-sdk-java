@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.wueasy.waymark.spring.boot.autoconfigure.WaymarkAutoConfiguration

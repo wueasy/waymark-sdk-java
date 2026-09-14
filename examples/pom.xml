@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wueasy.waymark</groupId>
+    <artifactId>waymark-java-examples</artifactId>
+    <version>0.1.0</version>
+    <packaging>pom</packaging>
+
+    <name>waymark-java-examples</name>
+    <description>Waymark Java SDK 示例聚合工程：core（JDK 1.8）、spring-boot2（JDK 1.8）、spring-boot3（JDK 17）</description>
+
+    <modules>
+        <module>core</module>
+        <module>spring-boot2</module>
+        <module>spring-boot3</module>
+    </modules>
+</project>

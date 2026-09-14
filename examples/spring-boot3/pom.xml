@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wueasy.waymark</groupId>
+    <artifactId>waymark-java-example-spring-boot3</artifactId>
+    <version>0.1.0</version>
+    <packaging>jar</packaging>
+
+    <name>waymark-java-example-spring-boot3</name>
+    <description>Waymark Java SDK Spring Boot 3 示例（JDK 17）：自动配置 + 配置热加载 + 自动注册 + 服务发现</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 与 Spring Boot 3 分支保持一致：JDK 17 -->
+        <maven.compiler.release>17</maven.compiler.release>
+        <waymark.version>0.1.0</waymark.version>
+        <spring-boot.version>3.3.6</spring-boot.version>
+    </properties>
+
+    <!-- 引入 Spring Boot BOM，统一管理 slf4j / logback / jackson 等版本，
+         避免 SDK 传递依赖里的 slf4j-api 1.7.x 覆盖 Boot 3 所需的 2.0.x 导致 logback 无法绑定。 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- 引入 Spring Boot 3 starter 即完成自动装配，无需任何配置类 -->
+        <dependency>
+            <groupId>com.wueasy.waymark</groupId>
+            <artifactId>waymark-spring-boot3-starter</artifactId>
+            <version>${waymark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+            <!-- 用 mvn spring-boot:run 启动示例 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  示例日志配置：控制台输出 SDK 内部日志，便于调试观察。
+  日志级别由系统属性 waymark.log.level 控制（DemoSupport.Options.newClient 会根据 -log 参数设置，
+  取值为 DEBUG 或 WARN），未设置时默认 DEBUG。
+-->
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 示例代码与 SDK 内部日志统一走该记录器 -->
+    <logger name="waymark-example" level="${waymark.log.level:-DEBUG}"/>
+
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>
